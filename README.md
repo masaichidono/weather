@@ -1,6 +1,6 @@
 <h1 align="center"> weather </h1>
 
-<p align="center"> .</p>
+<p align="center"> . </p>
 
 
 ## Installing
