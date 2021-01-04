@@ -40,9 +40,11 @@ class Weather
      * @param string $type
      * @param string $format
      * @return mixed|string
+     * @throws HttpException
+     * @throws InvalidArgumentException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function getWeather($city, $type = 'base', $format = 'json')
+    private function getWeather($city, $type = 'base', $format = 'json')
     {
         $api = 'https://restapi.amap.com/v3/weather/weatherInfo';
         //异常验证
@@ -67,6 +69,33 @@ class Weather
         } catch (\Exception $e) {
             throw new HttpException($e->getMessage(), $e->getCode(), $e);
         }
+    }
 
+    /**
+     * 查询实时天气
+     * @param $city
+     * @param string $format
+     * @return mixed|string
+     * @throws HttpException
+     * @throws InvalidArgumentException
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function getLiveWeather($city, $format = 'json')
+    {
+        return $this->getWeather($city, 'base', $format);
+    }
+
+    /**
+     * 获取天气预报
+     * @param $city
+     * @param string $format
+     * @return mixed|string
+     * @throws HttpException
+     * @throws InvalidArgumentException
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function getForecastWeather($city, $format = 'json')
+    {
+        return $this->getWeather($city, 'all', $format);
     }
 }

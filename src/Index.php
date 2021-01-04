@@ -8,11 +8,11 @@ class Index
 {
     public function index()
     {
-        $key = 'a25e9710f44e8bb11edb47ea9617fbd3';
+        $key  = '';
         $city = '深圳';
         try {
             $weather = new Weather($key);
-            $result  = $weather->getWeather($city);
+            $result  = $weather->getLiveWeather($city);
         } catch (Exception $e) {
             $message = $e->getMessage();
             if ($e instanceof InvalidArgumentException) {
